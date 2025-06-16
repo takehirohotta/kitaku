@@ -45,6 +45,7 @@ class LLMFormatter:
             response_text = response.text
             
             logger.info("LLM応答を取得しました")
+            logger.debug(f"LLM生応答: {response_text}")
             
             # JSONレスポンスをパース
             return self._parse_llm_response(response_text)

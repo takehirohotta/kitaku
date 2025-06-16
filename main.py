@@ -12,7 +12,7 @@ from src.services.llm_formatter import LLMFormatter
 from src.models.data_models import KitakuRecommendation, WeatherPattern
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
@@ -301,11 +301,11 @@ async def main():
         print("Kitaku - 天候を考慮した帰宅推奨システム")
         print("現在地の天候情報を取得し、最適な帰宅時刻を提案します...\n")
         
-        # 複数の推奨を取得
-        recommendations = await app.get_multiple_recommendations(count=5)
+        # 単一の推奨を取得してLLMの詳細応答を確認
+        recommendation = await app.get_recommendation()
         
         # 結果を表示
-        app.display_multiple_recommendations(recommendations)
+        app.display_recommendation(recommendation)
         
     except KitakuException as e:
         logger.error(f"アプリケーションエラー: {str(e)}")
