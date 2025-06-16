@@ -80,8 +80,8 @@ Kitaku - 天候を考慮した帰宅推奨システム
    # Google Gemini API設定
    GEMINI_API_KEY=your_gemini_api_key_here
    
-   # 使用するGeminiモデル（オプション、デフォルト: gemini-2.5-flash）
-   GEMINI_MODEL=gemini-2.5-flash
+   # 使用するGeminiモデル（オプション、デフォルト: gemini-2.0-flash-lite）
+   GEMINI_MODEL=gemini-2.0-flash-lite
    ```
 
 ### APIキーの取得方法
@@ -97,7 +97,8 @@ Kitaku - 天候を考慮した帰宅推奨システム
 ### 利用可能なGeminiモデル
 
 環境変数 `GEMINI_MODEL` で以下のモデルを選択できます：
-- `gemini-2.5-flash` (デフォルト、高速・コスト効率)
+- `gemini-2.0-flash-lite` (デフォルト、最新軽量版)
+- `gemini-2.5-flash` (高速・コスト効率)
 - `gemini-2.5-flash-8b` (軽量版)
 - `gemini-1.5-pro` (高精度)
 - `gemini-1.5-flash` (旧バージョン)
@@ -186,7 +187,7 @@ Google Gemini APIを使用して：
 |--------|------|-------------|------|
 | `YAHOO_CLIENT_ID` | ✅ | - | Yahoo天気APIのクライアントID |
 | `GEMINI_API_KEY` | ✅ | - | Google Gemini APIキー |
-| `GEMINI_MODEL` | ❌ | `gemini-2.5-flash` | 使用するGeminiモデル名 |
+| `GEMINI_MODEL` | ❌ | `gemini-2.0-flash-lite` | 使用するGeminiモデル名 |
 
 ## 📝 ライセンス
 
