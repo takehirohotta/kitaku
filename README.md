@@ -187,7 +187,7 @@ Google Gemini APIを使用して：
 
 ## 📝 ライセンス
 
-MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してください。
+MIT License
 
 ## 🤝 コントリビューション
 
