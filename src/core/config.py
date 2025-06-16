@@ -9,6 +9,7 @@ class Settings(BaseModel):
     """アプリケーション設定"""
     yahoo_client_id: str = Field(..., description="Yahoo APIのクライアントID")
     gemini_api_key: str = Field(..., description="Google Gemini APIキー")
+    gemini_model: str = Field("gemini-2.5-flash", description="使用するGeminiモデル名")
     
     # デフォルト座標（大阪府寝屋川市初町18-8 大阪電気通信大学周辺）
     default_latitude: float = Field(34.7619, description="デフォルト緯度")
@@ -40,9 +41,12 @@ def get_settings() -> Settings:
     if not gemini_api_key:
         raise ConfigurationException("GEMINI_API_KEYが設定されていません")
     
+    gemini_model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    
     return Settings(
         yahoo_client_id=yahoo_client_id,
         gemini_api_key=gemini_api_key,
+        gemini_model=gemini_model,
     )
 
 

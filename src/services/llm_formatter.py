@@ -23,7 +23,7 @@ class LLMFormatter:
             raise ValidationException("Gemini APIキーが設定されていません")
         
         genai.configure(api_key=self.api_key)
-        self.model = genai.GenerativeModel('gemini-2.5-flash-preview-05-20')
+        self.model = genai.GenerativeModel(settings.gemini_model)
     
     @retry(
         stop=stop_after_attempt(3),
