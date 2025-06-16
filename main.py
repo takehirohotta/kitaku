@@ -12,7 +12,7 @@ from src.services.llm_formatter import LLMFormatter
 from src.models.data_models import KitakuRecommendation, WeatherPattern
 
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.WARNING,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)

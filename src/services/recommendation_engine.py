@@ -143,8 +143,9 @@ class RecommendationEngine:
             return options[0]
         
         elif weather_pattern.pattern_type == "improving":
-            # 天候回復中の場合：少し遅めの便を選択
-            mid_index = min(len(options) // 2, len(options) - 1)
+            # 天候回復中の場合：最大3つの選択肢から中間を選択
+            available_options = min(3, len(options))
+            mid_index = available_options // 2
             return options[mid_index]
         
         elif weather_pattern.pattern_type == "light_rain":
@@ -153,12 +154,13 @@ class RecommendationEngine:
                 # 雨が強くなる傾向：早めの便
                 return options[0]
             else:
-                # 雨が弱くなる傾向：通常の便
-                return options[min(1, len(options) - 1)]
+                # 雨が弱くなる傾向：最大3つの選択肢から選択
+                available_options = min(3, len(options))
+                return options[min(1, available_options - 1)]
         
         else:  # clear
-            # 晴れの場合：通常の便
-            return options[min(1, len(options) - 1)]
+            # 晴れの場合：最大3つの選択肢から最初の便を選択
+            return options[0]
     
     def _has_weather_impact(self, weather_pattern: WeatherPattern) -> bool:
         """天候の影響があるかどうかを判定"""
