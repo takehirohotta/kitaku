@@ -74,14 +74,34 @@ Kitaku - 天候を考慮した帰宅推奨システム
    
    `.env`ファイルを編集して以下の設定を行う：
    ```env
-   # Yahoo天気API設定
+   # API設定（必須）
    YAHOO_CLIENT_ID=your_yahoo_client_id_here
-   
-   # Google Gemini API設定
    GEMINI_API_KEY=your_gemini_api_key_here
    
-   # 使用するGeminiモデル（オプション、デフォルト: gemini-2.0-flash-lite）
-   GEMINI_MODEL=gemini-2.0-flash-lite
+   # 位置情報設定（オプション）
+   # 自分の現在地の緯度・経度を設定
+   DEFAULT_LATITUDE=34.7619
+   DEFAULT_LONGITUDE=135.6283
+   
+   # 時刻表設定（オプション）
+   # 自分の時刻表CSVファイルのパスを設定
+   TIMETABLE_FILE_PATH=your_timetable.csv
+   
+   # 移動時間設定（オプション）
+   # 現在地から駅までの徒歩時間（分）
+   WALK_TO_STATION_MINUTES=10
+   ```
+
+5. **時刻表データを準備**
+   
+   `timetable_example.csv`を参考に、自分の路線の時刻表CSVファイルを作成してください。
+   
+   **CSVファイルの形式**：
+   ```csv
+   出発時刻,種別,行き先
+   05:17,準急,淀屋橋
+   05:30,準急,淀屋橋
+   05:41,急行,淀屋橋
    ```
 
 ### APIキーの取得方法
@@ -184,6 +204,10 @@ Google Gemini APIを使用して：
 | `YAHOO_CLIENT_ID` | ✅ | - | Yahoo天気APIのクライアントID |
 | `GEMINI_API_KEY` | ✅ | - | Google Gemini APIキー |
 | `GEMINI_MODEL` | ❌ | `gemini-2.0-flash-lite` | 使用するGeminiモデル名 |
+| `DEFAULT_LATITUDE` | ❌ | `34.7619` | デフォルト緯度（現在地の緯度） |
+| `DEFAULT_LONGITUDE` | ❌ | `135.6283` | デフォルト経度（現在地の経度） |
+| `TIMETABLE_FILE_PATH` | ❌ | `keihan_neyagawa.csv` | 時刻表CSVファイルのパス |
+| `WALK_TO_STATION_MINUTES` | ❌ | `10` | 現在地から駅までの徒歩時間（分） |
 
 ## 📝 ライセンス
 

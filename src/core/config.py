@@ -11,7 +11,7 @@ class Settings(BaseModel):
     gemini_api_key: str = Field(..., description="Google Gemini APIキー")
     gemini_model: str = Field("gemini-2.0-flash-lite", description="使用するGeminiモデル名")
     
-    # デフォルト座標（大阪府寝屋川市初町18-8 大阪電気通信大学周辺）
+    # デフォルト座標（環境変数で設定可能）
     default_latitude: float = Field(34.7619, description="デフォルト緯度")
     default_longitude: float = Field(135.6283, description="デフォルト経度")
     
@@ -43,10 +43,24 @@ def get_settings() -> Settings:
     
     gemini_model = os.getenv("GEMINI_MODEL", "gemini-2.0-flash-lite")
     
+    # 位置情報（環境変数から取得、デフォルト値あり）
+    default_latitude = float(os.getenv("DEFAULT_LATITUDE", "34.7619"))
+    default_longitude = float(os.getenv("DEFAULT_LONGITUDE", "135.6283"))
+    
+    # 時刻表ファイルパス（環境変数から取得、デフォルト値あり）
+    timetable_file_path = os.getenv("TIMETABLE_FILE_PATH", "keihan_neyagawa.csv")
+    
+    # 移動時間（環境変数から取得、デフォルト値あり）
+    walk_to_station_minutes = int(os.getenv("WALK_TO_STATION_MINUTES", "10"))
+    
     return Settings(
         yahoo_client_id=yahoo_client_id,
         gemini_api_key=gemini_api_key,
         gemini_model=gemini_model,
+        default_latitude=default_latitude,
+        default_longitude=default_longitude,
+        timetable_file_path=timetable_file_path,
+        walk_to_station_minutes=walk_to_station_minutes,
     )
 
 
